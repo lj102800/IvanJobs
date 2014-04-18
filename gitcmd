@@ -1,0 +1,2 @@
+git reset --soft HEAD^
+restore from last push and commit
