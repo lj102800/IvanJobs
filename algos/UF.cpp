@@ -4,7 +4,7 @@
 #include <cstdio>
 
 #define MAX 100
-int mat[MAX];
+int P[MAX];
 
 class QuickFindUF {
 public:
@@ -25,28 +25,28 @@ QuickFindUF::QuickFindUF(int N) {
 	this->n = N;
 	int i;
 	for (i = 0; i < N; ++i)
-		mat[i] = i;
+		P[i] = i;
 }
 
 bool QuickFindUF::connected(int p, int q) {
-	if (mat[p] == mat[q]) return true;
+	if (P[p] == P[q]) return true;
 	else return false;
 }
 
 void QuickFindUF::uni(int p, int q) {
-	int p_cid = mat[p];
-	int q_cid = mat[q];
+	int p_cid = P[p];
+	int q_cid = P[q];
 
 	if (!this->connected(p, q)) {
 		int i;
 		for (i = 0; i < this->n; ++i) {
-			if (mat[i] == p_cid) mat[i] = q_cid;
+			if (P[i] == p_cid) P[i] = q_cid;
 		}
 	}
 }
 
 int QuickFindUF::find(int p) { 
-	return mat[p];
+	return P[p];
 }
 
 int QuickFindUF::count() {
