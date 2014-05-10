@@ -16,7 +16,11 @@ void rotate(Node*& node, int d) {
 	k->childs[d] = node;
 	node = k;
 }
-
+/*
+insert new node into this treap,
+o : point to root node
+x : key in BST
+*/
 void insert(Node*& o, int x) {
 	if (o == NULL) {
 		o = new Node();
@@ -42,7 +46,9 @@ void remove(Node*& o, int x) {
 		}
 	} else remove(o->childs[d], x);
 }
-
+/*
+find whether x is in BST o as a key.
+ */
 int find(Node* o, int x) {
 	while(o != NULL) {
 		int d = o->cmp(x);
