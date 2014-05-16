@@ -1,7 +1,12 @@
 // Graph Theory
 
 /* ===================================================== *\
- | DAG DFS 
+ | DAG DFS TAG
+ | edge[i][j] if i->j has edge? 1->true, 0->false
+ | V -> maxV, a little bit bigger than number of vertexs
+ | pre and post ? it seems pre is used for tag dfs tree'v level of curr node.
+ | tag ?
+ | we can use this operation to find Tree Edge, Down Edge, Back Edge and Cross Edge! 
 \* ===================================================== */
 int edge[V][V], pre[V], post[V], tag;
 void dfstag(int cur, int n) {
@@ -20,3 +25,27 @@ void dfstag(int cur, int n) {
 	}
 	post[cur] = ++tag;
 }
+
+/*===========================================================*\
+ | find bridge in a undirected graph
+\*===========================================================*/
+int bridge, edge[V][V], anc[V], pre[V], vis[V];
+void dfs(int cur, int father, int dep, int n) {
+	// vertex: 0 ~ n-1
+	if (bridge) return ;
+	vis[cur] = 1; pre[cur] = anc[cur] = dep;
+	for (int i = 0; i < n; ++i) if (edge[cur][i]) {
+		if (i != father && 1 == vis[i]) {
+			if (pre[i] < anc[cur])
+				anc[cur] = pre[i]; // back edge
+		}
+		if (0 == vis[i]) { // tree edge
+			dfs(i, cur, dep + 1, n);
+			if (bridge) return ;
+			if (anc[i] < anc[cur]) anc[cur] = anc[i];
+			if (anc[i] > pre[cur]) { bridge = 1; return ;}
+		}
+	}
+	vis[cur] = 2;
+}
+
