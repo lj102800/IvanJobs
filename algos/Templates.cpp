@@ -27,7 +27,9 @@ void dfstag(int cur, int n) {
 }
 
 /*===========================================================*\
- | find bridge in a undirected graph
+ | find one bridge in a undirected graph
+ | INIT: edge, vis, pre, anc, bridge all init to 0
+ | CALL: dfs(0, -1, 1, n);
 \*===========================================================*/
 int bridge, edge[V][V], anc[V], pre[V], vis[V];
 void dfs(int cur, int father, int dep, int n) {
@@ -43,7 +45,10 @@ void dfs(int cur, int father, int dep, int n) {
 			dfs(i, cur, dep + 1, n);
 			if (bridge) return ;
 			if (anc[i] < anc[cur]) anc[cur] = anc[i];
-			if (anc[i] > pre[cur]) { bridge = 1; return ;}
+			if (anc[i] > pre[cur]) {
+				printf("find a bridge %d->%d\n", cur, i); 
+				bridge = 1; return ;
+			}
 		}
 	}
 	vis[cur] = 2;
