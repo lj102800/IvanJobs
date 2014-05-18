@@ -123,9 +123,10 @@ int clique(int n) {
 
 
 /*=============================================*\
- | 欧拉路径O(E)
+ | 欧拉路径O(E): a path that use all edges each just once! 
  | INIT: adj[][]置为图的邻接表； cnt[a] 为a点的临界点个数；
  | CALL： elpath(0); 注意：不要有自向边。
+ | 简单测试了一下，感觉不work？
 \*===============================================*/
 int adj[V][V], idx[V][V], cnt[V], stk[V], top;
 int path(int v) {
@@ -136,7 +137,7 @@ int path(int v) {
 	}
 	return v;
 }
-void elpath(int b, int n) {
+void elpath(int b, int n) { // euler path begin from vertex b, vertex 0 ~ n-1
 	int i, j;
 	for (i = 0; i < n; ++i) 
 		for (j = 0; j < cnt[i]; ++j)
