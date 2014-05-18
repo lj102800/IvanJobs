@@ -149,3 +149,38 @@ void elpath(int b, int n) { // euler path begin from vertex b, vertex 0 ~ n-1
 	}
 	printf("\n");
 }
+
+/*===================================================*\
+ | Dijkstra Array Impl O(N^2)
+ | Dijkstra -- 数组实现（在此基础上可直接改成STL的Queue实现）
+ | lowcost[] -- beg到其他点的最近距离
+ | path[] -- beg 为根展开的树， 记录父亲节点
+\*===================================================*/
+#define INF 0x03F3F3F3F
+const int N;
+int path[N], vis[N];
+void Dijkstra(int cost[][N], int lowcost[N], int n, int beg) {
+	int i, j, min;
+	memset(vis, 0, sizeof(vis));
+	vis[beg] = 1;
+	for (i = 0; i < n; ++i) {
+		lowcost[i] = cost[beg][i]; path[i] = beg;
+	}
+	lowcost[beg] = 0;
+	path[beg] = -1;
+	int pre = beg;
+	for (i = 1; i < n; ++i) {
+		min = INF;
+		for (j = 0; j < n; ++j) 
+			if (vis[j] == 0 &&
+			lowcost[pre] + cost[pre][j] < lowcost[j]) {
+				lowcost[j] = lowcost[pre] + cost[pre][j];
+				path[j] = pre;
+			}
+		for (j = 0; j < n; ++j) 
+			if (vis[j] == 0 && lowcost[j] < min) {
+				min = lowcost[j]; pre = j;
+			}
+		vis[pre] = 1;
+	}
+}
