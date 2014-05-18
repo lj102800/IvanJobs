@@ -121,3 +121,30 @@ int clique(int n) {
 	return mx;
 }
 
+
+/*=============================================*\
+ | 欧拉路径O(E)
+ | INIT: adj[][]置为图的邻接表； cnt[a] 为a点的临界点个数；
+ | CALL： elpath(0); 注意：不要有自向边。
+\*===============================================*/
+int adj[V][V], idx[V][V], cnt[V], stk[V], top;
+int path(int v) {
+	for (int w; cnt[v] > 0 ; v = w) {
+		stk[top++] = v;
+		w = adj[v][ --cnt[v] ];
+		adj[w][idx[w][v]] = adj[w][--cnt[w]];
+	}
+	return v;
+}
+void elpath(int b, int n) {
+	int i, j;
+	for (i = 0; i < n; ++i) 
+		for (j = 0; j < cnt[i]; ++j)
+			idx[i][adj[i][j]] = j;
+	printf("%d", b);
+	for (top = 0; path(b) == b && top != 0;) {
+		b = stk[--top];
+		printf("-%d", b);
+	}
+	printf("\n");
+}
