@@ -4,4 +4,5 @@
 #define FOR(i, a, b) for(int i = (a), _b = (b); i <= _b; i++)
 #define Max(a, b) ((a) > (b) ? (a) : (b))
 #define Min(a, b) ((a) < (b) ? (a) : (b))
+#define Abs(x) ((x) > 0 ? (x) :(-(x)))
 #define L(fmt, ...) do {if(true) printf(fmt"\n", ##__VA_ARGS__);} while(false)
