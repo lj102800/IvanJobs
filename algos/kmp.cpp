@@ -1,16 +1,25 @@
-int fail[P];
-int kmp(char* str, char* pat){
-	int i, j, k;
-  	memset(fail, -1, sizeof(fail));
-  	for (i = 1; pat[i]; ++i) {
-    		for (k=fail[i-1]; k>=0 && pat[i]!=pat[k+1]; k=fail[k]);
-    		if (pat[k + 1] == pat[i]) fail[i] = k + 1;
-  	}
-  	i = j = 0;
-  	while( str[i] && pat[j] ){ // By Fandywang
-  	if( pat[j] == str[i] ) ++i, ++j;
-  	else if(j == 0)++i;//第一个字符匹配失败，从str下个字符开始
-  	else j = fail[j-1]+1; }
-  	if( pat[j] ) return -1;
-  	else return i-j;
+/*
+	T: text string
+	P: pattern string
+	f: fail array
+ */
+void kmp(char* T, char* P, int* f) {
+	int n = strlen(T), m = strlen(P);
+	getFail(P, f);
+	int j = 0;
+	for (i = 0; i < n; i++) {
+		while(j && P[j] != T[j]) j = f[j];
+		if(P[j] == T[j]) j++;
+		if (j == m) printf("%d\n", i - m + 1); // find one match here
+	}
+}
+
+void getFail(char* P, int* f) {
+	int m = strlen(P);
+	f[0] = 0; f[1] = 0;
+	for (int i = 1; i < m; i++) {
+		int j = f[i];
+		while(j && P[i] != P[j]) j = f[j];
+		f[i + 1] = P[i] == P[j] ? j + 1 : 0;
+	}
 }
