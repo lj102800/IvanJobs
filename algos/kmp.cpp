@@ -8,8 +8,8 @@ void kmp(char* T, char* P, int* f) {
 	getFail(P, f);
 	int j = 0;
 	for (i = 0; i < n; i++) {
-		while(j && P[j] != T[j]) j = f[j];
-		if(P[j] == T[j]) j++;
+		while(j && P[j] != T[i]) j = f[j];
+		if(P[j] == T[i]) j++;
 		if (j == m) printf("%d\n", i - m + 1); // find one match here
 	}
 }
