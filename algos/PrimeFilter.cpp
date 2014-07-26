@@ -1,27 +1,20 @@
-#include <cstring>
-#include <cmath>
-#include <cstdio>
+const int MAXN = 10000000 + 10
+const int MAXP = 700000;
 
-bool is[10100]; int prm[10100];
+int vis[MAXN];
+int prime[MAXP];
 
-int getprm(int n) {
-	int i, j, k = 0;
-	int s, e = (int) (sqrt(0.0 + n) + 1);
-	memset(is, 1, sizeof(is));
-	prm[k++] = 2; is[0] = is[1] = 0;
-	for (i = 4; i < n; i += 2) is[i] = 0;
-	for (i = 3; i < e; i += 2) if (is[i]) {
-		prm[k++] = i;
-		for (s = i * 2, j = i * i; j < n; j += s) is[j] = 0;
+void sieve(int n) {
+	int m = (int) sqrt(n + 0.5);
+	memset(vis, false, sizeof(vis));
+	for (int i = 2; i <= m; i++) if(!vis[i]) {
+		for(j = i * i; j <= n; j += i) vis[j] = true;
 	}
-	for (; i < n; i += 2) if (is[i]) prm[k++] = i;
-	return k;
 }
 
-int main() {
-	int n = getprm(100);
-	printf("%d\n", n);
-	for (int i = 0; i < n; ++i)
-		printf("%d\n", prm[i]);
-	return 0;
+int genPrimes(int n) {
+	sieve(n);
+	int c = 0;
+	for(int i = 2; i <= n; i++) if (!vis[i]) prime[c++] = i;
+	return c;
 }
