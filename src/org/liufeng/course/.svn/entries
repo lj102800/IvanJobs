@@ -1,0 +1,56 @@
+10
+
+dir
+0
+https://svn.sinaapp.com/wechatsrc/3/src/org/liufeng/course
+https://svn.sinaapp.com/wechatsrc
+add
+
+
+
+
+
+has-props
+has-prop-mods
+
+
+
+
+
+
+
+
+
+
+
+
+745f9c74-85a5-4fc3-a892-a40d3c060523
+
+service
+dir
+
+
+
+add
+
+message
+dir
+
+
+
+add
+
+servlet
+dir
+
+
+
+add
+
+util
+dir
+
+
+
+add
+
