@@ -1,70 +1,0 @@
-10
-
-dir
-0
-https://svn.sinaapp.com/wechatsrc/3/src/org/liufeng/course/message/req
-https://svn.sinaapp.com/wechatsrc
-add
-
-
-
-
-
-has-props
-has-prop-mods
-
-
-
-
-
-
-
-
-
-
-
-
-745f9c74-85a5-4fc3-a892-a40d3c060523
-
-BaseMessage.java
-file
-
-
-
-add
-
-LinkMessage.java
-file
-
-
-
-add
-
-ImageMessage.java
-file
-
-
-
-add
-
-TextMessage.java
-file
-
-
-
-add
-
-VoiceMessage.java
-file
-
-
-
-add
-
-LocationMessage.java
-file
-
-
-
-add
-
